@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pasha's Date Invitation ❤️</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    height:100vh;
+    overflow:hidden;
+    font-family: Georgia, serif;
+    background:linear-gradient(#0b1026,#2b1248);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color:white;
+}
+
+/* Stars */
+.star{
+    position:absolute;
+    width:3px;
+    height:3px;
+    background:white;
+    border-radius:50%;
+    animation:twinkle 2s infinite alternate;
+}
+
+@keyframes twinkle{
+    from{opacity:.3;}
+    to{opacity:1;}
+}
+
+.card{
+    width:90%;
+    max-width:500px;
+    background:white;
+    color:#333;
+    padding:35px;
+    border-radius:25px;
+    text-align:center;
+    box-shadow:0 0 40px rgba(255,255,255,.3);
+    animation:open .8s ease;
+    z-index:2;
+}
+
+@keyframes open{
+    from{
+        transform:scale(.5);
+        opacity:0;
+    }
+    to{
+        transform:scale(1);
+        opacity:1;
+    }
+}
+
+h1{
+    color:#e91e63;
+    margin-bottom:25px;
+}
+
+.info{
+    text-align:left;
+    font-size:18px;
+    line-height:1.8;
+}
+
+strong{
+    color:#e91e63;
+}
+
+#countdown{
+    margin:20px;
+    font-size:20px;
+    color:#e91e63;
+    font-weight:bold;
+}
+
+button{
+    padding:14px 25px;
+    border:none;
+    border-radius:15px;
+    font-size:18px;
+    margin:10px;
+    cursor:pointer;
+}
+
+#yes{
+    background:#e91e63;
+    color:white;
+}
+
+#no{
+    background:#777;
+    color:white;
+    position:absolute;
+}
+
+.note{
+    margin-top:25px;
+    font-style:italic;
+    color:#555;
+}
+
+.heart{
+    position:absolute;
+    animation:fall linear infinite;
+}
+
+@keyframes fall{
+    from{
+        transform:translateY(-10vh);
+    }
+    to{
+        transform:translateY(110vh);
+    }
+}
+
+#message{
+    margin-top:20px;
+    color:#e91e63;
+    font-size:24px;
+    font-weight:bold;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="card">
+
+<h1>💌 Pasha is inviting you on a date! 💌</h1>
+
+<div class="info">
+
+<p><strong>📅 When:</strong><br>
+Thursday July 23, 2026<br>
+6:00 PM</p>
+
+<p><strong>📍 Where:</strong><br>
+It's a surprise! 🤫</p>
+
+<p><strong>🚗 How:</strong><br>
+I'm gonna pick you up and drive you, silly goose ❤️</p>
+
+<p><strong>👗 What:</strong><br>
+Dress nice casual!</p>
+
+</div>
+
+<div id="countdown"></div>
+
+<button id="yes">❤️ Accept</button>
+<button id="no">❌ Deny</button>
+
+<div id="message"></div>
+
+<p class="note">
+"Every date with you is my favorite date.
+I can't wait to spend another beautiful evening with my best friend.
+I love you ❤️"
+</p>
+
+</div>
+
+
+<script>
+
+// Create stars
+for(let i=0;i<80;i++){
+let star=document.createElement("div");
+star.className="star";
+star.style.left=Math.random()*100+"vw";
+star.style.top=Math.random()*100+"vh";
+document.body.appendChild(star);
+}
+
+// Falling hearts
+for(let i=0;i<30;i++){
+let heart=document.createElement("div");
+heart.className="heart";
+heart.innerHTML="❤️";
+heart.style.left=Math.random()*100+"vw";
+heart.style.fontSize=(15+Math.random()*25)+"px";
+heart.style.animationDuration=(4+Math.random()*6)+"s";
+document.body.appendChild(heart);
+}
+
+
+// Countdown
+let date = new Date("July 23, 2026 18:00:00").getTime();
+
+setInterval(function(){
+
+let now = new Date().getTime();
+let distance = date-now;
+
+let days=Math.floor(distance/(1000*60*60*24));
+let hours=Math.floor((distance%(1000*60*60*24))/(1000*60*60));
+let mins=Math.floor((distance%(1000*60*60))/(1000*60));
+let secs=Math.floor((distance%(1000*60))/1000);
+
+document.getElementById("countdown").innerHTML =
+"⏳ "+days+" days "+hours+" hours "+mins+" minutes "+secs+" seconds";
+
+},1000);
+
+
+// Accept button
+document.getElementById("yes").onclick=function(){
+
+document.getElementById("message").innerHTML=
+"🎉 Date Accepted! ❤️<br>I can't wait to see you!";
+
+document.getElementById("yes").style.display="none";
+document.getElementById("no").style.display="none";
+
+};
+
+
+// Deny runs away
+let no=document.getElementById("no");
+
+no.onmouseover=function(){
+
+no.style.left=Math.random()*70+"vw";
+no.style.top=Math.random()*70+"vh";
+
+};
+
+</script>
+
+</body>
+</html>
